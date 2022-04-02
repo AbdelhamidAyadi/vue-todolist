@@ -3,25 +3,59 @@ var app = new Vue({
     data: {
         newTask: '',
         toDoList: [
-            
-        ]
+           
+    ],
+
 
     },
     methods: {
-        addTask: function() {
-            this.toDoList.push({
-                text: this.newTask,
-                done: false
-            },)
+        addTask: function () {
+            if (this.newTask == '') {
+                alert('Please enter a valid task')
+
+            } else if (this.checkTask(this.newTask)) {
+                alert('You already wrote this task')
+            } else {
+                this.toDoList.push({
+                    text: this.newTask,
+                    done: false
+                }, )
+                
+            }
             this.newTask = "";
+           
+
+
         },
 
-        removeTask: function(index) {
-             this.toDoList.splice(index, 1)
+        checkTask: function (task) {
+            for (let i = 0; i < this.toDoList.length; i++) {
+                if (this.toDoList[i]['text'] == task) {
+                    return true
+                    
+                }
+                
+                
+            }
         },
-        test: function(index) {
-            this.toDoList[index] = done = true
-       },
+
+        removeTask: function (index) {
+            this.toDoList.splice(index, 1)
+        },
+        test: function (index) {
+
+
+            if (this.toDoList[index]['done'] == false) {
+                this.toDoList[index]['done'] = true
+
+
+            } else if (this.toDoList[index]['done'] == true) {
+                this.toDoList[index]['done'] = false
+
+
+            }
+
+        },
 
 
     }
