@@ -23,8 +23,10 @@
             <input class="input" @keyup.enter="addTask" type="text" v-model="newTask" placeholder="Nuovo Todo">
             <button type="button" @click="addTask" class="btn btn-outline-dark">Add</button>
         </div>
+        
         <div class="todo_list">
-            <ul class="list-unstyled">
+            <h2 v-if=" toDoList.length == 0 "> Your to do list is empty. </h2>
+            <ul v-else class="list-unstyled">
                 <li class="tasks d-flex justify-content-between"  v-for="(task, index) in toDoList"><span v-if="toDoList[index]['done']" class="cancelled" @click="test(index)" >{{task.text}}</span> <span v-else @click="test(index)" >{{task.text}}</span><i class="fa-solid fa-circle-minus" @click="removeTask(index)"></i> </li>
             </ul>
         </div>
